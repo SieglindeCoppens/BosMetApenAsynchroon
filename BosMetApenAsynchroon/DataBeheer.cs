@@ -24,6 +24,7 @@ namespace BosMetApenAsynchroon
 
         public async Task VoegWoodRecordToe(List<Bos> bossen)
         {
+            Console.WriteLine("start toevoegen woodrecords");
             SqlConnection connection = getConnection();
             string queryWood = "INSERT INTO dbo.WoodRecords(woodId,treeId,x,y) VALUES(@woodId, @treeId, @x, @y)";
             using (SqlCommand command = connection.CreateCommand())
@@ -36,7 +37,7 @@ namespace BosMetApenAsynchroon
                     command.Parameters.Add(new SqlParameter("@x", SqlDbType.Int));
                     command.Parameters.Add(new SqlParameter("@y", SqlDbType.Int));
                     command.CommandText = queryWood;
-                    for(int i=1; i<bossen.Count; i++)
+                    for(int i=0; i<bossen.Count; i++)
                     {
                         command.Parameters["@woodId"].Value = bossen[i].BosId;
                         foreach(Boom boom in bossen[i].Bomen)
@@ -58,9 +59,11 @@ namespace BosMetApenAsynchroon
                     connection.Close();
                 }
             }
+            Console.WriteLine("einde toevoegen woodrecords");
         }
         public async Task VoegMonkeyRecordToe(List<Bos> bossen)
         {
+            Console.WriteLine("start toevoegen monkeyrecords");
             SqlConnection connection = getConnection();
             string queryMonkey = "INSERT INTO dbo.MonkeyRecords(monkeyId, monkeyName, woodId, seqnr, treeId, x, y) VALUES(@monkeyId, @monkeyName, @woodId, @seqnr, @treeId, @x, @y)";
             using (SqlCommand command = connection.CreateCommand())
@@ -105,12 +108,13 @@ namespace BosMetApenAsynchroon
                 {
                     connection.Close();
                 }
-
+                Console.WriteLine($"einde toevoegen monkeyrecords");
             }
 
         }
         public async Task voegLogsToe(List<Bos> bossen)
         {
+            Console.WriteLine("start toevoegen logs");
             SqlConnection connection = getConnection();
             string queryLogs = "INSERT INTO dbo.logs(woodId, monkeyId, message) VALUES(@woodId, @monkeyId, @message)";
             using (SqlCommand command = connection.CreateCommand())
@@ -148,6 +152,7 @@ namespace BosMetApenAsynchroon
                     connection.Close();
                 }
             }
+            Console.WriteLine("einde toevoegen logs");
         }
 
     }

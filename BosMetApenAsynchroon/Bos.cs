@@ -63,6 +63,7 @@ namespace BosMetApenAsynchroon
 
         public async Task StartOntsnappingAap(Aap aap)
         {
+            Console.WriteLine($"{aap.Naam} start ontsnapping");
             bool ontsnapt = false;
             Boom huidigeBoom = aap.bezochteBomen[0];
             Boom dichtsteBoom = null;
@@ -97,9 +98,9 @@ namespace BosMetApenAsynchroon
                     huidigeBoom = dichtsteBoom;
                     aap.bezochteBomen.Add(huidigeBoom);
                     minimum = Xmax * Ymax;
-                    Console.WriteLine($"{aap.Naam} springt");
                 }
             }
+            Console.WriteLine($"{aap.Naam} is ontsnapt");
         }
     }
 }

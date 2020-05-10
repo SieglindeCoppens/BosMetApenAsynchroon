@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BosMetApenAsynchroon
 {
     class BestandenPrinter
     {
-        public void printLogBestand(Bos bos)
+        public async Task printLogBestand(Bos bos)
         {
             int maxAantalStappen = bos.Apen[0].bezochteBomen.Count;
             for(int x = 1; x < bos.Apen.Count; x++)
