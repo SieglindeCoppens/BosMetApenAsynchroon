@@ -89,7 +89,7 @@ namespace BosMetApenAsynchroon
                 }
 
                 double afstandTotRand = (new List<double>() { Ymax - huidigeBoom.Y, Xmax - huidigeBoom.X, huidigeBoom.Y - 0, huidigeBoom.X - 0 }).Min();
-                if (afstandTotRand <= minimum)
+                if (afstandTotRand < minimum)
                 {
                     ontsnapt = true;
                 }
