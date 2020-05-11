@@ -23,11 +23,15 @@ namespace BosMetApenAsynchroon
             BestandenPrinter bp = new BestandenPrinter();
             DataBeheer db = new DataBeheer("Data Source=DESKTOP-HT91N8R\\SQLEXPRESS;Initial Catalog=db_Apenbos;Integrated Security=True");
             List<Task> taken = new List<Task>();
-            taken.Add(Task.Run(() => db.VoegWoodRecordToe(bossen)));
-            taken.Add(Task.Run(() => bs.maakBitMap(bossen, @"C:\Users\Sieglinde\OneDrive\Documenten\Programmeren\semester2\programmeren 4\Apenbos")));
-            taken.Add(Task.Run(() => bp.printLogBestand(bossen)));
-            taken.Add(Task.Run(() => db.VoegMonkeyRecordToe(bossen)));
-            taken.Add(Task.Run(() => db.voegLogsToe(bossen)));
+            foreach (Bos bos in bossen)
+            {
+                taken.Add(Task.Run(() => db.VoegWoodRecordToe(bos)));
+                taken.Add(Task.Run(() => bs.maakBitMap(bos, @"C:\Users\Sieglinde\OneDrive\Documenten\Programmeren\semester2\programmeren 4\Apenbos")));
+                taken.Add(Task.Run(() => bp.printLogBestand(bos)));
+                taken.Add(Task.Run(() => db.VoegMonkeyRecordToe(bos)));
+                taken.Add(Task.Run(() => db.voegLogsToe(bos)));
+
+            }
             Task.WaitAll(taken.ToArray());
         }
     }

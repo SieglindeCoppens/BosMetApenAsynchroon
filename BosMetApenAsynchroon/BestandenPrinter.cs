@@ -9,10 +9,8 @@ namespace BosMetApenAsynchroon
 {
     class BestandenPrinter
     {
-        public async Task printLogBestand(List<Bos> bossen)
+        public async Task printLogBestand(Bos bos)
         {
-            foreach(Bos bos in bossen)
-            {
                 int maxAantalStappen = bos.Apen[0].bezochteBomen.Count;
                 for (int x = 1; x < bos.Apen.Count; x++)
                 {
@@ -36,6 +34,6 @@ namespace BosMetApenAsynchroon
                     }
                 }
             }   
-        }
+        
     }
 }

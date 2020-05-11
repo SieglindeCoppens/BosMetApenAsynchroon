@@ -10,10 +10,8 @@ namespace BosMetApenAsynchroon
 {
     class BitmapSchrijver
     {
-        public async Task maakBitMap(List<Bos> bossen, string path)
+        public async Task maakBitMap(Bos bos, string path)
         {
-            foreach(Bos bos in bossen)
-            {
                 Console.WriteLine($"Start schrijven bitmap voor bos {bos.BosId}");
                 Bitmap bm = new Bitmap(bos.Xmax * 10, bos.Ymax * 10);
                 Graphics graphics = Graphics.FromImage(bm);
@@ -41,7 +39,6 @@ namespace BosMetApenAsynchroon
                 Console.WriteLine($"Einde schrijven bitmap voor bos {bos.BosId}");
             }
            
-        }
 
         
     }

@@ -22,9 +22,9 @@ namespace BosMetApenAsynchroon
             return connection;
         }
 
-        public async Task VoegWoodRecordToe(List<Bos> bossen)
+        public async Task VoegWoodRecordToe(Bos bos)
         {
-            Console.WriteLine("start toevoegen woodrecords");
+            Console.WriteLine($"start toevoegen woodrecords voor bos {bos.BosId}");
             SqlConnection connection = getConnection();
             string queryWood = "INSERT INTO dbo.WoodRecords(woodId,treeId,x,y) VALUES(@woodId, @treeId, @x, @y)";
             using (SqlCommand command = connection.CreateCommand())
@@ -37,17 +37,15 @@ namespace BosMetApenAsynchroon
                     command.Parameters.Add(new SqlParameter("@x", SqlDbType.Int));
                     command.Parameters.Add(new SqlParameter("@y", SqlDbType.Int));
                     command.CommandText = queryWood;
-                    for(int i=0; i<bossen.Count; i++)
-                    {
-                        command.Parameters["@woodId"].Value = bossen[i].BosId;
-                        foreach(Boom boom in bossen[i].Bomen)
+                        command.Parameters["@woodId"].Value = bos.BosId;
+                        foreach(Boom boom in bos.Bomen)
                         {
                             command.Parameters["@treeId"].Value = boom.Id;
                             command.Parameters["@x"].Value = boom.X;
                             command.Parameters["@y"].Value = boom.Y;
                             command.ExecuteNonQuery();
                         }
-                    }
+                    
 
                 }
                 catch(Exception ex)
@@ -59,11 +57,11 @@ namespace BosMetApenAsynchroon
                     connection.Close();
                 }
             }
-            Console.WriteLine("einde toevoegen woodrecords");
+            Console.WriteLine($"stop toevoegen woodrecords voor bos {bos.BosId}");
         }
-        public async Task VoegMonkeyRecordToe(List<Bos> bossen)
+        public async Task VoegMonkeyRecordToe(Bos bos)
         {
-            Console.WriteLine("start toevoegen monkeyrecords");
+            Console.WriteLine($"start toevoegen monkeyrecords voor bos {bos.BosId}");
             SqlConnection connection = getConnection();
             string queryMonkey = "INSERT INTO dbo.MonkeyRecords(monkeyId, monkeyName, woodId, seqnr, treeId, x, y) VALUES(@monkeyId, @monkeyName, @woodId, @seqnr, @treeId, @x, @y)";
             using (SqlCommand command = connection.CreateCommand())
@@ -79,9 +77,7 @@ namespace BosMetApenAsynchroon
                     command.Parameters.Add(new SqlParameter("@x", SqlDbType.Int));
                     command.Parameters.Add(new SqlParameter("@y", SqlDbType.Int));
                     command.CommandText = queryMonkey;
-                    for(int bosTeller = 0; bosTeller < bossen.Count; bosTeller++)
-                    {
-                        Bos bos = bossen[bosTeller];
+
                         for(int aapTeller = 0; aapTeller < bos.Apen.Count; aapTeller++)
                         {
                             Aap aap = bos.Apen[aapTeller];
@@ -98,7 +94,7 @@ namespace BosMetApenAsynchroon
                                 command.ExecuteNonQuery();
                             }
                         }
-                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -108,13 +104,13 @@ namespace BosMetApenAsynchroon
                 {
                     connection.Close();
                 }
-                Console.WriteLine($"einde toevoegen monkeyrecords");
+                Console.WriteLine($"stop toevoegen monkeyrecords voor bos {bos.BosId}");
             }
 
         }
-        public async Task voegLogsToe(List<Bos> bossen)
+        public async Task voegLogsToe(Bos bos)
         {
-            Console.WriteLine("start toevoegen logs");
+            Console.WriteLine($"start toevoegen logs voor bos {bos.BosId}");
             SqlConnection connection = getConnection();
             string queryLogs = "INSERT INTO dbo.logs(woodId, monkeyId, message) VALUES(@woodId, @monkeyId, @message)";
             using (SqlCommand command = connection.CreateCommand())
@@ -126,9 +122,6 @@ namespace BosMetApenAsynchroon
                     command.Parameters.Add(new SqlParameter("@monkeyId", SqlDbType.Int));
                     command.Parameters.Add(new SqlParameter("@message", SqlDbType.NVarChar));
                     command.CommandText = queryLogs;
-                    for (int bosTeller = 0; bosTeller < bossen.Count; bosTeller++)
-                    {
-                        Bos bos = bossen[bosTeller];
                         for (int aapTeller = 0; aapTeller < bos.Apen.Count; aapTeller++)
                         {
                             Aap aap = bos.Apen[aapTeller];
@@ -141,7 +134,6 @@ namespace BosMetApenAsynchroon
                                 command.ExecuteNonQuery();
                             }
                         }
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -152,7 +144,7 @@ namespace BosMetApenAsynchroon
                     connection.Close();
                 }
             }
-            Console.WriteLine("einde toevoegen logs");
+            Console.WriteLine($"stop toevoegen logs voor bos {bos.BosId}");
         }
 
     }

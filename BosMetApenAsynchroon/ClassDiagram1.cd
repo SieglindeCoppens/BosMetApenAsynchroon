@@ -8,14 +8,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BosMetApenAsynchroon.BestandenPrinter">
-    <Position X="6.5" Y="1.75" Width="3" />
+    <Position X="6.25" Y="2" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BestandenPrinter.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BosMetApenAsynchroon.BitmapSchrijver">
-    <Position X="6.5" Y="3" Width="3.5" />
+    <Position X="6" Y="3.25" Width="3.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BitmapSchrijver.cs</FileName>
@@ -36,7 +36,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BosMetApenAsynchroon.DataBeheer">
-    <Position X="6.5" Y="4.25" Width="3.25" />
+    <Position X="6.25" Y="4.5" Width="3.25" />
     <TypeIdentifier>
       <HashCode>EAAABAAAAAAAABgAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DataBeheer.cs</FileName>
